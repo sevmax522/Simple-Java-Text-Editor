@@ -74,8 +74,9 @@ public class UI extends JFrame implements ActionListener {
 
     //setup icons - Bold and Italic
     private final ImageIcon boldIcon = new ImageIcon(UI.class.getResource("icons/bold.png"));
-    private final ImageIcon italicIcon = new ImageIcon("icons/italic.png");
-
+    //private final ImageIcon italicIcon = new ImageIcon("icons/italic.png");
+    private final ImageIcon italicIcon = new ImageIcon(UI.class.getResource("icons/italic.png")); //added by amshah to fix italic icon in the UI
+ 
     // setup icons - File Menu
     private final ImageIcon newIcon = new ImageIcon(UI.class.getResource("icons/new.png"));
     private final ImageIcon openIcon = new ImageIcon(UI.class.getResource("icons/open.png"));
