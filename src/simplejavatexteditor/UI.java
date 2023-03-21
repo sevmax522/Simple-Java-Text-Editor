@@ -79,6 +79,7 @@ public class UI extends JFrame implements ActionListener {
     private final ImageIcon boldIcon = new ImageIcon(UI.class.getResource("icons/bold.png"));
     private final ImageIcon italicIcon = new ImageIcon(UI.class.getResource("icons/italic.png"));
 
+   //Emile Reese - Underline Icon location
     private final ImageIcon underlineIcon = new ImageIcon(UI.class.getResource("icons/underline.png"));
 
     // setup icons - File Menu
@@ -561,7 +562,7 @@ public class UI extends JFrame implements ActionListener {
                 textArea.setFont(textArea.getFont().deriveFont(Font.ITALIC));
             }
         }
-        //for underline
+        //for underline - EMILE REESE
         else if(e.getSource() == underlineButton){
             HashMap<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
             fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
