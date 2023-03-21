@@ -37,7 +37,9 @@
  */
 package simplejavatexteditor;
 
+import java.awt.font.TextAttribute;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -56,6 +58,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.StyledEditorKit;
 
 public class UI extends JFrame implements ActionListener {
 
@@ -69,12 +72,14 @@ public class UI extends JFrame implements ActionListener {
     private final JMenuItem newFile, openFile, saveFile, close, cut, copy, paste, clearFile, selectAll, quickFind,
             aboutMe, aboutSoftware, wordWrap;
     private final JToolBar mainToolbar;
-    JButton newButton, openButton, saveButton, clearButton, quickButton, aboutMeButton, aboutButton, closeButton, boldButton, italicButton;
+    JButton newButton, openButton, saveButton, clearButton, quickButton, aboutMeButton, aboutButton, closeButton, boldButton, italicButton, underlineButton;
     private final Action selectAllAction;
 
     //setup icons - Bold and Italic
     private final ImageIcon boldIcon = new ImageIcon(UI.class.getResource("icons/bold.png"));
-    private final ImageIcon italicIcon = new ImageIcon("icons/italic.png");
+    private final ImageIcon italicIcon = new ImageIcon(UI.class.getResource("icons/italic.png"));
+
+    private final ImageIcon underlineIcon = new ImageIcon(UI.class.getResource("icons/underline.png"));
 
     // setup icons - File Menu
     private final ImageIcon newIcon = new ImageIcon(UI.class.getResource("icons/new.png"));
@@ -357,6 +362,13 @@ public class UI extends JFrame implements ActionListener {
         italicButton.addActionListener(this);
         mainToolbar.add(italicButton);
         mainToolbar.addSeparator();
+
+        //new button - underline
+       underlineButton = new JButton(underlineIcon);
+       underlineButton.setToolTipText("Underline");
+       underlineButton.addActionListener(this);
+       mainToolbar.add(underlineButton);
+       mainToolbar.addSeparator();
         /**
          * **************** FONT SETTINGS SECTION **********************
          */
@@ -549,6 +561,22 @@ public class UI extends JFrame implements ActionListener {
                 textArea.setFont(textArea.getFont().deriveFont(Font.ITALIC));
             }
         }
+        //for underline
+        else if(e.getSource() == underlineButton){
+            HashMap<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
+            fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+            Font UNDERLINE = new Font("Centry Gothic", Font.PLAIN, 12).deriveFont(fontAttributes);
+            if(textArea.getFont().getStyle() == UNDERLINE.getStyle() ){
+                textArea.setFont(textArea.getFont().deriveFont(fontAttributes));
+            }
+            else{
+                textArea.setFont(textArea.getFont().deriveFont(UNDERLINE.getStyle()));
+            }
+        }
+       // HashMap<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
+        //fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+        //Font UNDERLINE = new Font("Centry Gothic", Font.PLAIN, 12).deriveFont(fontAttributes);
+
         // Clear File (Code)
         if (e.getSource() == clearFile || e.getSource() == clearButton) {
 
