@@ -562,7 +562,7 @@ public class UI extends JFrame implements ActionListener {
                 textArea.setFont(textArea.getFont().deriveFont(Font.ITALIC));
             }
         }
-        //for underline - EMILE REESE
+        //for underline - EMILE REESE - Typing to commit.
         else if(e.getSource() == underlineButton){
             HashMap<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
             fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
