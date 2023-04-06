@@ -59,6 +59,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.StyledEditorKit;
+import java.awt.event.*;
 
 public class UI extends JFrame implements ActionListener {
 
@@ -72,12 +73,17 @@ public class UI extends JFrame implements ActionListener {
     private final JMenuItem newFile, openFile, saveFile, close, cut, copy, paste, clearFile, selectAll, quickFind,
             aboutMe, aboutSoftware, wordWrap;
     private final JToolBar mainToolbar;
-    JButton newButton, openButton, saveButton, clearButton, quickButton, aboutMeButton, aboutButton, closeButton, boldButton, italicButton, underlineButton;
+    JButton newButton, openButton, saveButton, clearButton, quickButton, aboutMeButton, aboutButton, closeButton, boldButton, italicButton, underlineButton, strikethroughButton;
     private final Action selectAllAction;
 
-    //setup icons - Bold and Italic
+    //setup icons - Bold 
     private final ImageIcon boldIcon = new ImageIcon(UI.class.getResource("icons/bold.png"));
+
+    //Amshah Mushtaq - Italic Icon (fixed it, now it shows in the UI)
     private final ImageIcon italicIcon = new ImageIcon(UI.class.getResource("icons/italic.png"));
+
+    //Amshah Mushtaq - Strikethrough Icon
+    private final ImageIcon strikethroughIcon = new ImageIcon(UI.class.getResource("icons/strikethrough.png"));
 
    //Emile Reese - Underline Icon location
     private final ImageIcon underlineIcon = new ImageIcon(UI.class.getResource("icons/underline.png"));
@@ -370,6 +376,14 @@ public class UI extends JFrame implements ActionListener {
        underlineButton.addActionListener(this);
        mainToolbar.add(underlineButton);
        mainToolbar.addSeparator();
+
+       //new button - strikethrough 
+       strikethroughButton = new JButton(strikethroughIcon);
+       strikethroughButton.setToolTipText("Strikethrough");
+       strikethroughButton.addActionListener(this);
+       mainToolbar.add(strikethroughButton);
+       mainToolbar.addSeparator();
+
         /**
          * **************** FONT SETTINGS SECTION **********************
          */
@@ -574,9 +588,21 @@ public class UI extends JFrame implements ActionListener {
                 textArea.setFont(textArea.getFont().deriveFont(UNDERLINE.getStyle()));
             }
         }
-       // HashMap<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
         //fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
         //Font UNDERLINE = new Font("Centry Gothic", Font.PLAIN, 12).deriveFont(fontAttributes);
+
+        //Amshah Mushtaq - strikethrough feature 
+        else if (e.getSource() == strikethroughButton){
+            HashMap<TextAttribute, Integer> fontAttribute = new HashMap<TextAttribute, Integer>();
+            fontAttribute.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
+            Font STRIKETHROUGH = new Font("Centry", Font.PLAIN, 12).deriveFont(fontAttribute);
+            if(textArea.getFont().getStyle() == STRIKETHROUGH.getStyle() ){
+                textArea.setFont(textArea.getFont().deriveFont(Font.PLAIN));
+            } else {
+                textArea.setFont(textArea.getFont().deriveFont(STRIKETHROUGH.getStyle()));
+            }
+        }///STILL WORKING HERE!!!
+
 
         // Clear File (Code)
         if (e.getSource() == clearFile || e.getSource() == clearButton) {
