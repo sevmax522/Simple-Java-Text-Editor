@@ -59,6 +59,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.StyledEditorKit;
+import javax.swing.text.AttributeSet.FontAttribute;
+
 import java.awt.event.*;
 
 public class UI extends JFrame implements ActionListener {
@@ -568,6 +570,7 @@ public class UI extends JFrame implements ActionListener {
             } else {
                 textArea.setFont(textArea.getFont().deriveFont(Font.BOLD));
             }
+
         }// If the source of the event was the "Italic" button
         else if (e.getSource() == italicButton) {
             if (textArea.getFont().getStyle() == Font.ITALIC) {
@@ -591,18 +594,19 @@ public class UI extends JFrame implements ActionListener {
         //fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
         //Font UNDERLINE = new Font("Centry Gothic", Font.PLAIN, 12).deriveFont(fontAttributes);
 
-        //Amshah Mushtaq - strikethrough feature 
+        //Amshah Mushtaq - strikethrough feature
+        
         else if (e.getSource() == strikethroughButton){
-            HashMap<TextAttribute, Integer> fontAttribute = new HashMap<TextAttribute, Integer>();
-            fontAttribute.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
-            Font STRIKETHROUGH = new Font("Centry", Font.PLAIN, 12).deriveFont(fontAttribute);
+            HashMap<TextAttribute, Boolean> fontAttributes = new HashMap<TextAttribute, Boolean>();
+            fontAttributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
+            Font STRIKETHROUGH = new Font("Centry Gothic", Font.PLAIN, 12).deriveFont(fontAttributes);
             if(textArea.getFont().getStyle() == STRIKETHROUGH.getStyle() ){
-                textArea.setFont(textArea.getFont().deriveFont(Font.PLAIN));
+                textArea.setFont(textArea.getFont().deriveFont(fontAttributes));
             } else {
                 textArea.setFont(textArea.getFont().deriveFont(STRIKETHROUGH.getStyle()));
             }
-        }///STILL WORKING HERE!!!
-
+        }
+    
 
         // Clear File (Code)
         if (e.getSource() == clearFile || e.getSource() == clearButton) {
