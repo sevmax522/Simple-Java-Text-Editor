@@ -75,7 +75,7 @@ public class UI extends JFrame implements ActionListener {
     private final JMenuItem newFile, openFile, saveFile, close, cut, copy, paste, clearFile, selectAll, quickFind,
             aboutMe, aboutSoftware, wordWrap;
     private final JToolBar mainToolbar;
-    JButton newButton, openButton, saveButton, clearButton, quickButton, aboutMeButton, aboutButton, closeButton, boldButton, italicButton, underlineButton, strikethroughButton, superscriptButton;
+    JButton newButton, openButton, saveButton, clearButton, quickButton, aboutMeButton, aboutButton, closeButton, boldButton, italicButton, underlineButton, strikethroughButton, superscriptButton, swapcolorButton;
     private final Action selectAllAction;
 
     //setup icons - Bold 
@@ -89,6 +89,9 @@ public class UI extends JFrame implements ActionListener {
 
     //Amshah Mushtaq - Superscript Icon
     private final ImageIcon superscriptIcon = new ImageIcon(UI.class.getResource("icons/superscript.png"));
+
+    //Amshah Mushtaq - Swap Color Icon
+    private final ImageIcon swapcolorIcon = new ImageIcon(UI.class.getResource("icons/swapcolor.png"));
 
    //Emile Reese - Underline Icon location
     private final ImageIcon underlineIcon = new ImageIcon(UI.class.getResource("icons/underline.png"));
@@ -396,6 +399,13 @@ public class UI extends JFrame implements ActionListener {
         mainToolbar.add(superscriptButton);
         mainToolbar.addSeparator();
 
+        //new button - swapcolor 
+        swapcolorButton = new JButton(swapcolorIcon);
+        swapcolorButton.setToolTipText("Swap Colors");
+        swapcolorButton.addActionListener(this);
+        mainToolbar.add(swapcolorButton);
+        mainToolbar.addSeparator();
+
         /**
          * **************** FONT SETTINGS SECTION **********************
          */
@@ -628,7 +638,17 @@ public class UI extends JFrame implements ActionListener {
             }
         }
 
-        // superscript and subscript
+        //Amshah Mushtaq - swapcolor feature 
+        else if (e.getSource() == swapcolorButton){
+            HashMap<TextAttribute, Boolean> fontAttributes = new HashMap<TextAttribute, Boolean>();
+            fontAttributes.put(TextAttribute.SWAP_COLORS, TextAttribute.SWAP_COLORS_ON);
+            Font SWAPCOLORS = new Font("Centry Gothic", Font.PLAIN, 12).deriveFont(fontAttributes);
+            if(textArea.getFont().getStyle() == SWAPCOLORS.getStyle() ){
+                textArea.setFont(textArea.getFont().deriveFont(fontAttributes));
+            } else {
+                textArea.setFont(textArea.getFont().deriveFont(SWAPCOLORS.getStyle()));
+            }
+        }
 
         // Clear File (Code)
         if (e.getSource() == clearFile || e.getSource() == clearButton) {
