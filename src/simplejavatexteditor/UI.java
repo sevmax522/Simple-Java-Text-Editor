@@ -75,7 +75,7 @@ public class UI extends JFrame implements ActionListener {
     private final JMenuItem newFile, openFile, saveFile, close, cut, copy, paste, clearFile, selectAll, quickFind,
             aboutMe, aboutSoftware, wordWrap;
     private final JToolBar mainToolbar;
-    JButton newButton, openButton, saveButton, clearButton, quickButton, aboutMeButton, aboutButton, closeButton, boldButton, italicButton, underlineButton, strikethroughButton;
+    JButton newButton, openButton, saveButton, clearButton, quickButton, aboutMeButton, aboutButton, closeButton, boldButton, italicButton, underlineButton, strikethroughButton, superscriptButton;
     private final Action selectAllAction;
 
     //setup icons - Bold 
@@ -86,6 +86,9 @@ public class UI extends JFrame implements ActionListener {
 
     //Amshah Mushtaq - Strikethrough Icon
     private final ImageIcon strikethroughIcon = new ImageIcon(UI.class.getResource("icons/strikethrough.png"));
+
+    //Amshah Mushtaq - Superscript Icon
+    private final ImageIcon superscriptIcon = new ImageIcon(UI.class.getResource("icons/superscript.png"));
 
    //Emile Reese - Underline Icon location
     private final ImageIcon underlineIcon = new ImageIcon(UI.class.getResource("icons/underline.png"));
@@ -373,18 +376,25 @@ public class UI extends JFrame implements ActionListener {
         mainToolbar.addSeparator();
 
         //new button - underline
-       underlineButton = new JButton(underlineIcon);
-       underlineButton.setToolTipText("Underline");
-       underlineButton.addActionListener(this);
-       mainToolbar.add(underlineButton);
-       mainToolbar.addSeparator();
+        underlineButton = new JButton(underlineIcon);
+        underlineButton.setToolTipText("Underline");
+        underlineButton.addActionListener(this);
+        mainToolbar.add(underlineButton);
+        mainToolbar.addSeparator();
 
-       //new button - strikethrough 
-       strikethroughButton = new JButton(strikethroughIcon);
-       strikethroughButton.setToolTipText("Strikethrough");
-       strikethroughButton.addActionListener(this);
-       mainToolbar.add(strikethroughButton);
-       mainToolbar.addSeparator();
+        //new button - strikethrough 
+        strikethroughButton = new JButton(strikethroughIcon);
+        strikethroughButton.setToolTipText("Strikethrough");
+        strikethroughButton.addActionListener(this);
+        mainToolbar.add(strikethroughButton);
+        mainToolbar.addSeparator();
+       
+        //new button - superscript 
+        superscriptButton = new JButton(superscriptIcon);
+        superscriptButton.setToolTipText("Superscript");
+        superscriptButton.addActionListener(this);
+        mainToolbar.add(superscriptButton);
+        mainToolbar.addSeparator();
 
         /**
          * **************** FONT SETTINGS SECTION **********************
@@ -594,8 +604,7 @@ public class UI extends JFrame implements ActionListener {
         //fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
         //Font UNDERLINE = new Font("Centry Gothic", Font.PLAIN, 12).deriveFont(fontAttributes);
 
-        //Amshah Mushtaq - strikethrough feature
-        
+        //Amshah Mushtaq - strikethrough feature 
         else if (e.getSource() == strikethroughButton){
             HashMap<TextAttribute, Boolean> fontAttributes = new HashMap<TextAttribute, Boolean>();
             fontAttributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
@@ -606,7 +615,20 @@ public class UI extends JFrame implements ActionListener {
                 textArea.setFont(textArea.getFont().deriveFont(STRIKETHROUGH.getStyle()));
             }
         }
-    
+        
+        //Amshah Mushtaq - superscript feature 
+        else if (e.getSource() == superscriptButton){
+            HashMap<TextAttribute, Boolean> fontAttributes = new HashMap<TextAttribute, Boolean>();
+            fontAttributes.put(TextAttribute.SUPERSCRIPT, true);
+            Font SUPERSCRIPT = new Font("Centry Gothic", Font.PLAIN, 12).deriveFont(fontAttributes);
+            if(textArea.getFont().getStyle() == SUPERSCRIPT.getStyle() ){
+                textArea.setFont(textArea.getFont().deriveFont(fontAttributes));
+            } else {
+                textArea.setFont(textArea.getFont().deriveFont(SUPERSCRIPT.getStyle()));
+            }
+        }
+
+        // superscript and subscript
 
         // Clear File (Code)
         if (e.getSource() == clearFile || e.getSource() == clearButton) {
@@ -618,6 +640,7 @@ public class UI extends JFrame implements ActionListener {
                 FEdit.clear(textArea);
             }
         }
+
         // Find
         if (e.getSource() == quickFind || e.getSource() == quickButton) {
             new Find(textArea);
