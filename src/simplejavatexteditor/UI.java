@@ -626,10 +626,12 @@ public class UI extends JFrame implements ActionListener {
             }
         }
         
-        //Amshah Mushtaq - superscript feature 
+        //Amshah Mushtaq - superscript feature
+        //Emile Reese - set arguments for hashmap and fontAttributes to Object, and 1 respectively.
+        // - Only error I've seemed to encounter is that superscripting is irreversible, except when changing font size.
         else if (e.getSource() == superscriptButton){
-            HashMap<TextAttribute, Boolean> fontAttributes = new HashMap<TextAttribute, Boolean>();
-            fontAttributes.put(TextAttribute.SUPERSCRIPT, true);
+            HashMap<TextAttribute, Object> fontAttributes = new HashMap<TextAttribute, Object>();
+            fontAttributes.put(TextAttribute.SUPERSCRIPT, 1);
             Font SUPERSCRIPT = new Font("Centry Gothic", Font.PLAIN, 12).deriveFont(fontAttributes);
             if(textArea.getFont().getStyle() == SUPERSCRIPT.getStyle() ){
                 textArea.setFont(textArea.getFont().deriveFont(fontAttributes));
