@@ -64,5 +64,3 @@ You can also generate easily a new jar file with the following command when you 
 ## LICENSE
 
 Apache License, Version 2.0 or later; See the license.txt file in the notepad folder.
-
-COMP 312 Testing Commit

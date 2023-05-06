@@ -136,6 +136,7 @@ public class UI extends JFrame implements ActionListener {
 
         // Set the title of the window
         setTitle("Untitled | " + SimpleJavaTextEditor.NAME);
+        
 
         // Set the default close operation (exit when it gets closed)
         setDefaultCloseOperation(EXIT_ON_CLOSE);

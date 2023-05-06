@@ -1,0 +1,13 @@
+Mission Statement:
+Our mission with this project is to effectively contribute to an open software program and make noticeable 
+improvements to the software. Our goal is to get a better grasp at problem solving and learning the inner 
+workings of a project while working as an effective and communicative team.
+
+
+Code of Conduct:
+- Contributors of the open source project shall act consistently with the public interest. 
+- Contributors shall consistently act in a manner that is in the best interest for all teammates and project goals.
+- Contributors shall ensure that modifications to the project meet a high professional standard.
+- Contributors shall consistently communicate with teammates and announce any changes or commits to the repository.
+- Contributors shall maintain integrity, avoid blatant plagiarism, and be ethical in their work towards the project. 
+- Contributors shall support teammates and work appropriately. 
