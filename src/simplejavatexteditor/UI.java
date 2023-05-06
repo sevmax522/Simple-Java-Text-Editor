@@ -77,6 +77,8 @@ public class UI extends JFrame implements ActionListener {
     private final JToolBar mainToolbar;
     JButton newButton, openButton, saveButton, clearButton, quickButton, aboutMeButton, aboutButton, closeButton, boldButton, italicButton, underlineButton, strikethroughButton, superscriptButton, swapcolorButton;
     private final Action selectAllAction;
+    //buttons for features added 
+    //underlineButton, strikethroughButton, superscriptButton, swapcolorButton
 
     //setup icons - Bold 
     private final ImageIcon boldIcon = new ImageIcon(UI.class.getResource("icons/bold.png"));
@@ -84,6 +86,7 @@ public class UI extends JFrame implements ActionListener {
     //Amshah Mushtaq - Italic Icon (fixed it, now it shows in the UI)
     private final ImageIcon italicIcon = new ImageIcon(UI.class.getResource("icons/italic.png"));
 
+    //new icons - these are the images that are clicked on in the editor to use the feature 
     //Amshah Mushtaq - Strikethrough Icon
     private final ImageIcon strikethroughIcon = new ImageIcon(UI.class.getResource("icons/strikethrough.png"));
 
@@ -95,6 +98,7 @@ public class UI extends JFrame implements ActionListener {
 
    //Emile Reese - Underline Icon location
     private final ImageIcon underlineIcon = new ImageIcon(UI.class.getResource("icons/underline.png"));
+
 
     // setup icons - File Menu
     private final ImageIcon newIcon = new ImageIcon(UI.class.getResource("icons/new.png"));
@@ -378,6 +382,8 @@ public class UI extends JFrame implements ActionListener {
         italicButton.addActionListener(this);
         mainToolbar.add(italicButton);
         mainToolbar.addSeparator();
+
+        //new buttons follow the same format of the existing buttons
 
         //new button - underline
         underlineButton = new JButton(underlineIcon);
